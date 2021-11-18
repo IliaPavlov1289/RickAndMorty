@@ -13,6 +13,7 @@ class CharacterViewController: UIViewController {
     private var characterView: CharacterView {
         return self.view as! CharacterView
     }
+    private var button: UIButton?
     private var characters = [Character]()
     
     override func loadView() {
@@ -26,13 +27,35 @@ class CharacterViewController: UIViewController {
         self.characterView.collectionView.dataSource = self
         self.characterView.collectionView.delegate = self
         
-        NetworkManager.shared.getCaracters() { [weak self] (characters) in
+        NetworkManager.shared.getCaracters(name: nil, status: nil, species: nil, gender: nil) { [weak self] (characters) in
             guard let self = self else {return}
             self.characters = characters
-            print (self.characters.count)
             self.characterView.collectionView.reloadData()
         }
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationItem.largeTitleDisplayMode = .automatic
+        navigationItem.title = "Character"
+        navigationController?.navigationBar.backgroundColor = UIColor.lightestGray
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineHeightMultiple = 1.01
+        self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.kern: 0.41, NSAttributedString.Key.paragraphStyle: paragraphStyle, NSAttributedString.Key.font: UIFont.init(name: "SFProText-Bold", size: 34.0) ?? UIFont.systemFont(ofSize: 34.0)]
+        self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        
+        button = UIButton.createFilterButton()
+        button?.addTarget(self, action: #selector(openFilterCriterias), for: .touchUpInside)
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(customView: button ?? UIButton())
     }
+    
+    
+    
+    @objc func openFilterCriterias() {
+        let characterFilterViewController = CharacterFilterViewController()
+        characterFilterViewController.delegate = self
+        let navigationController = UINavigationController(rootViewController: characterFilterViewController)
+        present(navigationController, animated: true, completion: nil)
+            
+    }
+    
 }
 
 extension CharacterViewController: UICollectionViewDataSource {
@@ -52,6 +75,7 @@ extension CharacterViewController: UICollectionViewDataSource {
             cell.characterImageView.image = image
         }
         return cell
+        
     }
 }
 
@@ -85,5 +109,22 @@ extension CharacterViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return Constants.spacing
+    }
+}
+
+extension CharacterViewController: FilterScreenDelegate {
+    func selectedParams(name: String?, status: String?, species: String?, gender: String?) {
+        if (name != nil || status != nil || species != nil || gender != nil) {
+
+            self.button?.imageView?.isHidden = false
+        } else {
+            self.button?.imageView?.isHidden = true
+        }
+        
+        NetworkManager.shared.getCaracters(name: name, status: status, species: species, gender: gender) { [weak self] (characters) in
+            guard let self = self else {return}
+                self.characters = characters
+                self.characterView.collectionView.reloadData()
+        }
     }
 }

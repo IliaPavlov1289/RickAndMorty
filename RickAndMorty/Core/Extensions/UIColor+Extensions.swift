@@ -12,6 +12,8 @@ public extension UIColor {
     static let black = UIColor.rgb(8, 31, 50)
     static let gray = UIColor.rgb(110, 121, 140)
     static let lightGray = UIColor.rgb(239, 239, 244)
+    static let lightestGray = UIColor.rgba(248, 248, 248, 0.92)
+    static let purple = UIColor.rgb(88, 86, 214)
 }
 
 public extension UIColor {

@@ -18,6 +18,7 @@ class CharacterView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        self.backgroundColor = .white
         setupViews()
         setupLayouts()
     }
@@ -33,6 +34,7 @@ class CharacterView: UIView {
     }
     
     private func setupLayouts() {
+        
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([

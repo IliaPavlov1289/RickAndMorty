@@ -16,11 +16,18 @@ class NetworkManager {
         
     }
 
-    func getCaracters(completion: @escaping ([Character]) -> Void) {
+    func getCaracters(name: String?, status: String?, species: String?, gender: String?, completion: @escaping ([Character]) -> Void) {
         let host = "https://rickandmortyapi.com/api"
         let path = "/character"
         
-        AF.request(host + path).responseData { (response) in
+        let params: Parameters = [
+            "name": name ?? "",
+            "status": status ?? "",
+            "species": species ?? "",
+            "gender": gender ?? "",
+                ]
+        
+        AF.request(host + path, parameters: params).responseData { (response) in
             switch response.result {
             case .success:
                 guard let data = response.value,

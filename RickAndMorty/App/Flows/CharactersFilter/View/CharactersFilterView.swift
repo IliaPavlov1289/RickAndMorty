@@ -1,5 +1,5 @@
 //
-//  CharacterFilterView.swift
+//  CharactersFilterView.swift
 //  RickAndMorty
 //
 //  Created by Илья Павлов on 03.11.2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CharacterFilterView: UIView {
+class CharactersFilterView: UIView {
     
     private(set) lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)

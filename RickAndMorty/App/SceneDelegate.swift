@@ -20,8 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: windowScene)
         
-        let characterViewController = CharacterViewController()
-        let navigationController = UINavigationController(rootViewController: characterViewController)
+        let charactersViewController = CharactersViewController()
+        let navigationController = UINavigationController(rootViewController: charactersViewController)
         
         window.rootViewController = navigationController
         

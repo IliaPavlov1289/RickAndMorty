@@ -10,6 +10,8 @@ import UIKit
 public extension UIColor {
     
     static let black = UIColor.rgb(8, 31, 50)
+    static let gray1 = UIColor.rgb(142, 142, 147)
+    static let gray6 = UIColor.rgb(242, 242, 247)
     static let gray = UIColor.rgb(110, 121, 140)
     static let lightGray = UIColor.rgb(239, 239, 244)
     static let lightestGray = UIColor.rgba(248, 248, 248, 0.92)

@@ -1,5 +1,5 @@
 //
-//  CharacterCollectionViewCell.swift
+//  CharactersCollectionViewCell.swift
 //  RickAndMorty
 //
 //  Created by Илья Павлов on 01.11.2021.
@@ -11,7 +11,7 @@ protocol ReusableView: AnyObject {
     static var identifier: String { get }
 }
 
-class CharacterCollectionViewCell: UICollectionViewCell {
+class CharactersCollectionViewCell: UICollectionViewCell {
     
     private(set) lazy var characterImageView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
@@ -94,7 +94,7 @@ class CharacterCollectionViewCell: UICollectionViewCell {
     }
 }
 
-extension CharacterCollectionViewCell: ReusableView {
+extension CharactersCollectionViewCell: ReusableView {
     static var identifier: String {
         return String(describing: self)
     }

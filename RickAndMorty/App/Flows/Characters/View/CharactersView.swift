@@ -1,5 +1,5 @@
 //
-//  CharacterView.swift
+//  CharactersView.swift
 //  RickAndMorty
 //
 //  Created by Илья Павлов on 01.11.2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CharacterView: UIView {
+class CharactersView: UIView {
     
     private(set) lazy var collectionView: UICollectionView = {
         let viewLayout = UICollectionViewFlowLayout()

@@ -11,7 +11,7 @@ class FilterCriterias {
     
     public static let shared = FilterCriterias()
     
-    var characterFilterCriterias = [
+    var charactersFilterCriterias = [
         [FilterCriteria(sectionName: "Name", sectionNamber: 0, title: "Name", isSelected: false, subtitle: "Give a name")],
         [FilterCriteria(sectionName: "Species", sectionNamber: 1, title: "Species", isSelected: false, subtitle: "Select one")],
         [FilterCriteria(sectionName: "Status", sectionNamber: 2, title: "Alive", isSelected: false, subtitle: nil),

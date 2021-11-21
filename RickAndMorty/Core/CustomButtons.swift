@@ -13,10 +13,10 @@ extension UIButton {
         
         var configuration = UIButton.Configuration.plain()
         configuration.title = "Filter"
-        configuration.attributedTitle?.kern = 0.41
+        configuration.attributedTitle?.kern = -0.41
         
         let paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineHeightMultiple = 1.08
+        paragraphStyle.lineHeightMultiple = 1.00
         configuration.attributedTitle?.paragraphStyle = paragraphStyle
         configuration.attributedTitle?.font = UIFont.init(name: "SFProText-Semibold", size: 17.0)
         configuration.image = UIImage(named: "circle")
@@ -25,7 +25,6 @@ extension UIButton {
         
         configuration.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: 0, bottom: 5, trailing: 0)
         let button = UIButton(configuration: configuration, primaryAction: nil)
-        button.imageView?.isHidden = true
         return button
     }
     
@@ -55,6 +54,25 @@ extension UIButton {
         configuration.attributedTitle?.font = UIFont.init(name: "SFProText-Regular", size: 17.0)
         configuration.baseForegroundColor = UIColor.purple
         configuration.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        let button = UIButton(configuration: configuration, primaryAction: nil)
+        return button
+    }
+    
+    class func createBackButton() -> UIButton {
+        
+        var configuration = UIButton.Configuration.plain()
+        configuration.title = "Back"
+        configuration.attributedTitle?.kern = -0.41
+        
+        let paragraphStyle = NSMutableParagraphStyle()
+        paragraphStyle.lineHeightMultiple = 1.0
+        configuration.attributedTitle?.paragraphStyle = paragraphStyle
+        configuration.attributedTitle?.font = UIFont.init(name: "SFProText-Regular", size: 17.0)
+        configuration.image = UIImage(named: "backArrow")
+        configuration.baseForegroundColor = UIColor.purple
+        configuration.imagePadding = 6
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 5, leading: -20, bottom: 5, trailing: 0)
+        
         let button = UIButton(configuration: configuration, primaryAction: nil)
         return button
     }

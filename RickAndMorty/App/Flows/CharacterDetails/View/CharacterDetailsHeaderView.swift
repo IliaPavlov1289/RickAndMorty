@@ -83,61 +83,55 @@ class CharacterDetailsHeaderView: UIView {
     }
     
     func setupViews() {
-        self.addSubview(backgroundImage)
-        self.addSubview(avatarImage)
-        self.addSubview(statusLabel)
-        self.addSubview(nameLabel)
-        self.addSubview(speciesLabel)
+        self.addSubview(self.backgroundImage)
+        self.addSubview(self.avatarImage)
+        self.addSubview(self.statusLabel)
+        self.addSubview(self.nameLabel)
+        self.addSubview(self.speciesLabel)
     }
 
     func setupLayouts() {
         
-        backgroundImage.translatesAutoresizingMaskIntoConstraints = false
+        self.backgroundImage.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            backgroundImage.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-            backgroundImage.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor),
-            backgroundImage.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor)
+            self.backgroundImage.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            self.backgroundImage.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor),
+            self.backgroundImage.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor)
         ])
         
-        avatarImage.translatesAutoresizingMaskIntoConstraints = false
+        self.avatarImage.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            avatarImage.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 19.0),
-            avatarImage.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor, constant: -70.0),
-            avatarImage.heightAnchor.constraint(equalToConstant: 140.0),
-            avatarImage.widthAnchor.constraint(equalToConstant: 140.0)
+            self.avatarImage.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: 19.0),
+            self.avatarImage.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.centerXAnchor, constant: -70.0),
+            self.avatarImage.heightAnchor.constraint(equalToConstant: 140.0),
+            self.avatarImage.widthAnchor.constraint(equalToConstant: 140.0)
         ])
         
-        statusLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.statusLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            statusLabel.topAnchor.constraint(equalTo: avatarImage.bottomAnchor, constant: 15.0),
-            statusLabel.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 20),
-            statusLabel.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor, constant: -20)
-//            statusLabel.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor)
-            
+            self.statusLabel.topAnchor.constraint(equalTo: self.avatarImage.bottomAnchor, constant: 15.0),
+            self.statusLabel.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 20),
+            self.statusLabel.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor, constant: -20)
         ])
         
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.nameLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            nameLabel.topAnchor.constraint(equalTo: statusLabel.bottomAnchor),
-            nameLabel.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 20),
-            nameLabel.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor, constant: -20)
-            
+            self.nameLabel.topAnchor.constraint(equalTo: self.statusLabel.bottomAnchor),
+            self.nameLabel.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 20),
+            self.nameLabel.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor, constant: -20)
         ])
         
-        speciesLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.speciesLabel.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            speciesLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor),
-            speciesLabel.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 20),
-            speciesLabel.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor, constant: -20),
-            speciesLabel.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -20)
-
+            self.speciesLabel.topAnchor.constraint(equalTo: self.nameLabel.bottomAnchor),
+            self.speciesLabel.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 20),
+            self.speciesLabel.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor, constant: -20),
+            self.speciesLabel.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -20)
         ])
     }
-
-
 }

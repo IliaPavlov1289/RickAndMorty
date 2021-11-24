@@ -11,7 +11,7 @@ class HeaderTableViewCell: UITableViewHeaderFooterView {
     
     private(set) lazy var label: UILabel = {
         let label = UILabel()
-        label.textColor = UIColor.black
+        label.textColor = UIColor.gray
         label.font = UIFont.init(name: "SFProText-Regular", size: 15.0)
         
         var paragraphStyle = NSMutableParagraphStyle()
@@ -33,16 +33,16 @@ class HeaderTableViewCell: UITableViewHeaderFooterView {
     }
     
     private func setupViews() {
-        contentView.addSubview(label)
+        self.contentView.addSubview(self.label)
     }
     
     private func setupLayouts() {
         
-        label.translatesAutoresizingMaskIntoConstraints = false
+        self.label.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            label.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 16.0),
-            label.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -8.5)
+            self.label.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 16.0),
+            self.label.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -8.5)
         ])
     }
     

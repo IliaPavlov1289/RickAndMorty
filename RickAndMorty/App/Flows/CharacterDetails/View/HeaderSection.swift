@@ -33,16 +33,16 @@ class HeaderSection: UITableViewHeaderFooterView {
     }
     
     private func setupViews() {
-        contentView.addSubview(label)
+        self.contentView.addSubview(self.label)
     }
     
     private func setupLayouts() {
         
-        label.translatesAutoresizingMaskIntoConstraints = false
+        self.label.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            label.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 16.0),
-            label.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -9.5)
+            self.label.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: 16.0),
+            self.label.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -9.5)
         ])
     }
     

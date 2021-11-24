@@ -64,37 +64,36 @@ class CharacterDetailsInformationCell: UITableViewCell {
     }
     
     private func setupViews() {
-        self.contentView.addSubview(label)
-        self.contentView.addSubview(subLabel)
-        self.contentView.addSubview(arrowImageView)
+        self.contentView.addSubview(self.label)
+        self.contentView.addSubview(self.subLabel)
+        self.contentView.addSubview(self.arrowImageView)
     }
     
     private func setupLayouts() {
         
-        label.translatesAutoresizingMaskIntoConstraints = false
+        self.label.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8.5),
-            label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            self.label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 8.5),
+            self.label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
         ])
         
-        subLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.subLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            subLabel.topAnchor.constraint(equalTo: label.bottomAnchor),
-            subLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            subLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10.5)
+            self.subLabel.topAnchor.constraint(equalTo: self.label.bottomAnchor),
+            self.subLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            self.subLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10.5)
         ])
         
-        arrowImageView.translatesAutoresizingMaskIntoConstraints = false
+        self.arrowImageView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            arrowImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 23.0),
-            arrowImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18.0),
-            arrowImageView.heightAnchor.constraint(equalToConstant: 22.0),
-            arrowImageView.widthAnchor.constraint(equalToConstant: 13.0)
+            self.arrowImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 23.0),
+            self.arrowImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18.0),
+            self.arrowImageView.heightAnchor.constraint(equalToConstant: 22.0),
+            self.arrowImageView.widthAnchor.constraint(equalToConstant: 13.0)
         ])
-        
     }
 }
 

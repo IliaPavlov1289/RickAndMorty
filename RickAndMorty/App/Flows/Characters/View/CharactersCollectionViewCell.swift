@@ -13,6 +13,13 @@ protocol ReusableView: AnyObject {
 
 class CharactersCollectionViewCell: UICollectionViewCell {
     
+    private enum Constants {
+        static let spacing: CGFloat = 12.0
+        static let borderWidth: CGFloat = 1.0
+        static let radius: CGFloat = 8.0
+        
+    }
+    
     private(set) lazy var characterImageView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.contentMode = .scaleAspectFit
@@ -56,39 +63,39 @@ class CharactersCollectionViewCell: UICollectionViewCell {
     }
 
     private func setupViews() {
-        contentView.layer.borderColor = UIColor.lightGray.cgColor
-        contentView.layer.borderWidth = Constants.borderWidth
-        contentView.clipsToBounds = true
-        contentView.layer.cornerRadius = Constants.radius
-        contentView.backgroundColor = .white
+        self.contentView.layer.borderColor = UIColor.lightGray.cgColor
+        self.contentView.layer.borderWidth = Constants.borderWidth
+        self.contentView.clipsToBounds = true
+        self.contentView.layer.cornerRadius = Constants.radius
+        self.contentView.backgroundColor = .white
 
-        contentView.addSubview(characterImageView)
-        contentView.addSubview(statusLabel)
-        contentView.addSubview(nameLabel)
+        self.contentView.addSubview(self.characterImageView)
+        self.contentView.addSubview(self.statusLabel)
+        self.contentView.addSubview(self.nameLabel)
     }
     
     private func setupLayouts() {
-        characterImageView.translatesAutoresizingMaskIntoConstraints = false
-        nameLabel.translatesAutoresizingMaskIntoConstraints = false
-        statusLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.characterImageView.translatesAutoresizingMaskIntoConstraints = false
+        self.nameLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.statusLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            characterImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            characterImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            characterImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            characterImageView.heightAnchor.constraint(equalTo: contentView.widthAnchor)
+            self.characterImageView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            self.characterImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            self.characterImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            self.characterImageView.heightAnchor.constraint(equalTo: contentView.widthAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            statusLabel.topAnchor.constraint(equalTo: characterImageView.bottomAnchor, constant: Constants.spacingSmall),
-            statusLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.spacingSmall),
-            statusLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
+            self.statusLabel.topAnchor.constraint(equalTo: self.characterImageView.bottomAnchor, constant: Constants.spacing),
+            self.statusLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.spacing),
+            self.statusLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ])
         
         NSLayoutConstraint.activate([
-            nameLabel.topAnchor.constraint(equalTo: statusLabel.bottomAnchor),
-            nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.spacingSmall),
-            nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Constants.spacingSmall)
+            self.nameLabel.topAnchor.constraint(equalTo: self.statusLabel.bottomAnchor),
+            self.nameLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: Constants.spacing),
+            self.nameLabel.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: Constants.spacing)
         ])
         
     }

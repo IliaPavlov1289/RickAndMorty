@@ -76,44 +76,43 @@ class EpisodeCell: UITableViewCell {
     }
     
     private func setupViews() {
-        self.contentView.addSubview(label)
-        self.contentView.addSubview(subLabel)
-        self.contentView.addSubview(dateLabel)
-        self.contentView.addSubview(arrowImageView)
+        self.contentView.addSubview(self.label)
+        self.contentView.addSubview(self.subLabel)
+        self.contentView.addSubview(self.dateLabel)
+        self.contentView.addSubview(self.arrowImageView)
     }
     
     private func setupLayouts() {
         
-        label.translatesAutoresizingMaskIntoConstraints = false
+        self.label.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 6.5),
-            label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            self.label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 6.5),
+            self.label.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
         ])
         
-        subLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.subLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            subLabel.topAnchor.constraint(equalTo: label.bottomAnchor),
-            subLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16)
-//            subLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10.5)
+            self.subLabel.topAnchor.constraint(equalTo: self.label.bottomAnchor),
+            self.subLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16)
         ])
         
-        dateLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.dateLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            dateLabel.topAnchor.constraint(equalTo: subLabel.bottomAnchor, constant: 5.0),
-            dateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            dateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -11.5)
+            self.dateLabel.topAnchor.constraint(equalTo: self.subLabel.bottomAnchor, constant: 5.0),
+            self.dateLabel.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            self.dateLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -11.5)
         ])
         
-        arrowImageView.translatesAutoresizingMaskIntoConstraints = false
+        self.arrowImageView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            arrowImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 31.0),
-            arrowImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18.0),
-            arrowImageView.heightAnchor.constraint(equalToConstant: 22.0),
-            arrowImageView.widthAnchor.constraint(equalToConstant: 13.0)
+            self.arrowImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 31.0),
+            self.arrowImageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -18.0),
+            self.arrowImageView.heightAnchor.constraint(equalToConstant: 22.0),
+            self.arrowImageView.widthAnchor.constraint(equalToConstant: 13.0)
         ])
         
     }

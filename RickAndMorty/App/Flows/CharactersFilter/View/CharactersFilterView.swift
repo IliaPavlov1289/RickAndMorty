@@ -31,18 +31,18 @@ class CharactersFilterView: UIView {
     }
     
     private func setupViews() {
-        self.addSubview(tableView)
+        self.addSubview(self.tableView)
     }
     
     private func setupLayouts() {
         
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+        self.tableView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-            tableView.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor),
-            tableView.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor),
-            tableView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor)
+            self.tableView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            self.tableView.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor),
+            self.tableView.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor),
+            self.tableView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor)
             
         ])
     }

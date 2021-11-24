@@ -12,15 +12,15 @@ class FilterCriterias {
     public static let shared = FilterCriterias()
     
     var charactersFilterCriterias = [
-        [FilterCriteria(sectionName: "Name", sectionNamber: 0, title: "Name", isSelected: false, subtitle: "Give a name")],
-        [FilterCriteria(sectionName: "Species", sectionNamber: 1, title: "Species", isSelected: false, subtitle: "Select one")],
-        [FilterCriteria(sectionName: "Status", sectionNamber: 2, title: "Alive", isSelected: false, subtitle: nil),
-        FilterCriteria(sectionName: "Status", sectionNamber: 2, title: "Dead", isSelected: false, subtitle: nil),
-        FilterCriteria(sectionName: "Status", sectionNamber: 2, title: "Unknown", isSelected: false, subtitle: nil)],
-        [FilterCriteria(sectionName: "Gender", sectionNamber: 3, title: "Female", isSelected: false, subtitle: nil),
-        FilterCriteria(sectionName: "Gender", sectionNamber: 3, title: "Male", isSelected: false, subtitle: nil),
-        FilterCriteria(sectionName: "Gender", sectionNamber: 3, title: "Genderless", isSelected: false, subtitle: nil),
-        FilterCriteria(sectionName: "Gender", sectionNamber: 3, title: "Unknown", isSelected: false, subtitle: nil)]
+        [FilterCriteria(sectionName: "Name", title: "Name", param: nil, isSelected: false, subtitle: "Give a name")],
+        [FilterCriteria(sectionName: "Species", title: "Species", param: nil, isSelected: false, subtitle: "Select one")],
+        [FilterCriteria(sectionName: "Status", title: "Alive", param: "Alive", isSelected: false, subtitle: nil),
+        FilterCriteria(sectionName: "Status", title: "Dead", param: "Dead", isSelected: false, subtitle: nil),
+        FilterCriteria(sectionName: "Status", title: "Unknown", param: "Unknown", isSelected: false, subtitle: nil)],
+        [FilterCriteria(sectionName: "Gender", title: "Female", param: "Female", isSelected: false, subtitle: nil),
+        FilterCriteria(sectionName: "Gender", title: "Male", param: "Male", isSelected: false, subtitle: nil),
+        FilterCriteria(sectionName: "Gender", title: "Genderless", param: "Genderless", isSelected: false, subtitle: nil),
+        FilterCriteria(sectionName: "Gender", title: "Unknown", param: "Unknown", isSelected: false, subtitle: nil)]
     ]
     
     private init () {

@@ -25,15 +25,15 @@ struct RadioButtonParamType {
 
 class FilterCriteria {
     let sectionName: String
-    let sectionNamber: Int
     let title: String
+    var param: String?
     var isSelected: Bool
-    let subtitle: String?
+    var subtitle: String?
     
-    init(sectionName:String, sectionNamber: Int, title:String, isSelected:Bool ,subtitle: String?){
+    init(sectionName:String, title:String, param:String?, isSelected:Bool ,subtitle: String?){
         self.sectionName = sectionName
-        self.sectionNamber = sectionNamber
         self.title = title
+        self.param = param
         self.isSelected = isSelected
         self.subtitle = subtitle
     }

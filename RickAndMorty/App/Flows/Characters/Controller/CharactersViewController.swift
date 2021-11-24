@@ -10,6 +10,13 @@ import UIKit
 
 class CharactersViewController: UIViewController {
     
+    private enum Constants {
+        static let spacing: CGFloat = 16.0
+        static let heightCardDescription: CGFloat = 79.0
+        static let itemsInRow: CGFloat = 2.0
+    }
+                                
+    
     private var charactersView: CharactersView {
         return self.view as! CharactersView
     }
@@ -41,10 +48,10 @@ class CharactersViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        navigationController?.navigationBar.prefersLargeTitles = true
-        navigationItem.largeTitleDisplayMode = .automatic
-        navigationItem.title = "Character"
-        navigationController?.navigationBar.backgroundColor = UIColor.lightestGray
+        self.navigationController?.navigationBar.prefersLargeTitles = true
+        self.navigationItem.largeTitleDisplayMode = .automatic
+        self.navigationItem.title = "Character"
+        self.navigationController?.navigationBar.backgroundColor = UIColor.lightestGray
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 1.01
         self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.kern: 0.41, NSAttributedString.Key.paragraphStyle: paragraphStyle, NSAttributedString.Key.font: UIFont.init(name: "SFProDisplay-Bold", size: 34.0) ?? UIFont.systemFont(ofSize: 34.0)]
@@ -52,7 +59,7 @@ class CharactersViewController: UIViewController {
         
     }
     
-    @objc func openFilterCriterias() {
+    @objc private func openFilterCriterias() {
         let charactersFilterViewController = CharactersFilterViewController()
         charactersFilterViewController.delegate = self
         let navigationController = UINavigationController(rootViewController: charactersFilterViewController)
@@ -64,16 +71,16 @@ class CharactersViewController: UIViewController {
 
 extension CharactersViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return characters.count
+        return self.characters.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CharactersCollectionViewCell.identifier, for: indexPath) as! CharactersCollectionViewCell
          
-        cell.nameLabel.text = characters[indexPath.row].name
-        cell.statusLabel.text = characters[indexPath.row].status
+        cell.nameLabel.text = self.characters[indexPath.row].name
+        cell.statusLabel.text = self.characters[indexPath.row].status
 
-        let url = characters[indexPath.row].image
+        let url = self.characters[indexPath.row].image
         NetworkManager.shared.getImage(fromUrl: url) { (image) in
             guard let image = image else { return }
             cell.characterImageView.image = image
@@ -85,7 +92,7 @@ extension CharactersViewController: UICollectionViewDataSource {
 
 extension CharactersViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let characterDetailsController = CharacterDetailsController(character: characters[indexPath.row])
+        let characterDetailsController = CharacterDetailsController(character: self.characters[indexPath.row])
         navigationController?.pushViewController(characterDetailsController, animated: true)
     }
 }
@@ -98,10 +105,9 @@ extension CharactersViewController: UICollectionViewDelegateFlowLayout {
     }
 
     func itemWidth(for width: CGFloat, spacing: CGFloat) -> CGFloat {
-        let itemsInRow: CGFloat = 2
 
-        let totalSpacing: CGFloat = 2 * spacing + (itemsInRow - 1) * spacing
-        let finalWidth = (width - totalSpacing) / itemsInRow
+        let totalSpacing: CGFloat = Constants.itemsInRow * spacing + (Constants.itemsInRow - 1) * spacing
+        let finalWidth = (width - totalSpacing) / Constants.itemsInRow
 
         return floor(finalWidth)
     }
@@ -132,8 +138,12 @@ extension CharactersViewController: FilterScreenDelegate {
             guard let self = self else {return}
             DispatchQueue.main.async {
                 self.characters = characters
+                self.charactersView.noResultsLabel.isHidden = true
                 self.charactersView.collectionView.reloadData()
             }
         }
+        self.characters = []
+        self.charactersView.noResultsLabel.isHidden = false
+        self.charactersView.collectionView.reloadData()
     }
 }

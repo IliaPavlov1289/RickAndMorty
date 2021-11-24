@@ -33,28 +33,28 @@ class CharacterDetailsView: UIView {
     }
     
     func setupViews() {
-        self.addSubview(characterDetailsHeaderView)
-        self.addSubview(tableView)
+        self.addSubview(self.characterDetailsHeaderView)
+        self.addSubview(self.tableView)
     }
 
     func setupLayouts() {
         
-        characterDetailsHeaderView.translatesAutoresizingMaskIntoConstraints = false
+        self.characterDetailsHeaderView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            characterDetailsHeaderView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
-            characterDetailsHeaderView.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor),
-            characterDetailsHeaderView.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor)
+            self.characterDetailsHeaderView.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor),
+            self.characterDetailsHeaderView.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor),
+            self.characterDetailsHeaderView.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor)
             
         ])
         
-        tableView.translatesAutoresizingMaskIntoConstraints = false
+        self.tableView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            tableView.topAnchor.constraint(equalTo: characterDetailsHeaderView.safeAreaLayoutGuide.bottomAnchor),
-            tableView.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor),
-            tableView.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor),
-            tableView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor)
+            self.tableView.topAnchor.constraint(equalTo: self.characterDetailsHeaderView.safeAreaLayoutGuide.bottomAnchor),
+            self.tableView.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor),
+            self.tableView.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor),
+            self.tableView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor)
             
         ])
     }

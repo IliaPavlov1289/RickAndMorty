@@ -45,7 +45,7 @@ class RadioFilterCell: UITableViewCell {
     public func isSelected(_ selected: Bool) {
         setSelected(selected, animated: false)
         let image = selected ? checked : unchecked
-        radioImageView.image = image
+        self.radioImageView.image = image
     }
     
     override func awakeFromNib() {
@@ -58,25 +58,25 @@ class RadioFilterCell: UITableViewCell {
     }
     
     private func setupViews() {
-        self.contentView.addSubview(radioImageView)
-        self.contentView.addSubview(label)
+        self.contentView.addSubview(self.radioImageView)
+        self.contentView.addSubview(self.label)
     }
     
     private func setupLayouts() {
-        radioImageView.translatesAutoresizingMaskIntoConstraints = false
-        label.translatesAutoresizingMaskIntoConstraints = false
+        self.radioImageView.translatesAutoresizingMaskIntoConstraints = false
+        self.label.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            radioImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 9.5),
-            radioImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
-            radioImageView.heightAnchor.constraint(equalToConstant: 30.0),
-            radioImageView.widthAnchor.constraint(equalToConstant: 28.0)
+            self.radioImageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 9.5),
+            self.radioImageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16),
+            self.radioImageView.heightAnchor.constraint(equalToConstant: 30.0),
+            self.radioImageView.widthAnchor.constraint(equalToConstant: 28.0)
         ])
         
         NSLayoutConstraint.activate([
-            label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10.5),
-            label.leadingAnchor.constraint(equalTo: radioImageView.trailingAnchor, constant: 13),
-            label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10.5)
+            self.label.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10.5),
+            self.label.leadingAnchor.constraint(equalTo: self.radioImageView.trailingAnchor, constant: 13),
+            self.label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10.5)
         ])
         
     }

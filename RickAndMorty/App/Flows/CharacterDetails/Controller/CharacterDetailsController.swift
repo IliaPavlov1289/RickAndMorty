@@ -33,7 +33,7 @@ class CharacterDetailsController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        createCharacterDetailsHeaderView()
+        self.createCharacterDetailsHeaderView()
         self.characterDetailsView.tableView.register(CharacterDetailsInformationCell.self, forCellReuseIdentifier: CharacterDetailsInformationCell.identifier)
         self.characterDetailsView.tableView.register(EpisodeCell.self, forCellReuseIdentifier: EpisodeCell.identifier)
         self.characterDetailsView.tableView.register(HeaderSection.self, forHeaderFooterViewReuseIdentifier: HeaderSection.identifier)
@@ -41,32 +41,41 @@ class CharacterDetailsController: UIViewController {
         self.characterDetailsView.tableView.dataSource = self
         self.characterDetailsView.tableView.sectionHeaderTopPadding = 0
         self.characterDetailsView.tableView.sectionFooterHeight = 0
+
+        self.createNavigationTitle()
+        self.setupBakcButton()
+        self.getEpisodes()
+    }
+    
+    @objc private func goToBack() {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
+    private func createNavigationTitle(){
         self.navigationItem.largeTitleDisplayMode = .never
-        
         self.navigationItem.title = character.name
-        navigationController?.navigationBar.backgroundColor = UIColor.lightestGray
+        self.navigationController?.navigationBar.backgroundColor = UIColor.lightestGray
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 1.12
         self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.kern: -0.24, NSAttributedString.Key.paragraphStyle: paragraphStyle, NSAttributedString.Key.font: UIFont.init(name: "SFProText-Semibold", size: 15.0) ?? UIFont.systemFont(ofSize: 15.0)]
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
-        
+    }
+    
+    private func setupBakcButton() {
         let backButton = UIButton.createBackButton()
         backButton.addTarget(self, action: #selector(goToBack), for: .touchUpInside)
         self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
-        
+    }
+    
+    private func getEpisodes() {
         self.character.episode.forEach({ NetworkManager.shared.getEpisode(url: $0) { [weak self] (episode) in
             guard let self = self else {return}
             self.episodes.append(episode)
             self.characterDetailsView.tableView.reloadData()
         }})
-        
     }
     
-    @objc func goToBack() {
-        self.navigationController?.popViewController(animated: true)
-    }
-    
-    func createCharacterDetailsHeaderView() {
+    private func createCharacterDetailsHeaderView() {
         
         self.characterDetailsView.characterDetailsHeaderView.statusLabel.text = character.status
         self.characterDetailsView.characterDetailsHeaderView.nameLabel.text = character.name
@@ -138,16 +147,16 @@ extension CharacterDetailsController: UITableViewDataSource {
                 switch indexPath.row {
                 case 0:
                     cell.label.text = "Gender"
-                    cell.subLabel.text = character.gender
+                    cell.subLabel.text = self.character.gender
                 case 1:
                     cell.label.text = "Origin"
-                    cell.subLabel.text = character.origin.name
+                    cell.subLabel.text = self.character.origin.name
                 case 2:
                     cell.label.text = "Type"
-                    cell.subLabel.text = character.type == "" ? "unspecified" : character.type
+                    cell.subLabel.text = self.character.type == "" ? "unspecified" : self.character.type
                 case 3:
                     cell.label.text = "Location"
-                    cell.subLabel.text = character.location.name
+                    cell.subLabel.text = self.character.location.name
                     cell.arrowImageView.isHidden = false
                 default:
                     break
@@ -158,9 +167,9 @@ extension CharacterDetailsController: UITableViewDataSource {
         case 1:
             if let cell = tableView.dequeueReusableCell(withIdentifier: EpisodeCell.identifier, for: indexPath) as? EpisodeCell {
                 
-                cell.label.text = episodes[indexPath.row].episode
-                cell.subLabel.text = episodes[indexPath.row].name
-                cell.dateLabel.text = episodes[indexPath.row].airDate.uppercased()
+                cell.label.text = self.episodes[indexPath.row].episode
+                cell.subLabel.text = self.episodes[indexPath.row].name
+                cell.dateLabel.text = self.episodes[indexPath.row].airDate.uppercased()
   
                 return cell
 

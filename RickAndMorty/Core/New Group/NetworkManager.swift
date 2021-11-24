@@ -36,6 +36,7 @@ class NetworkManager {
                 completion(characters)
             case .failure(let error):
                 print(error.localizedDescription)
+                print(error)
             }
         }
     }

@@ -109,4 +109,26 @@ class NetworkManager {
         }
     }
     
+    func getEpisodes(name: String?, completion: @escaping ([Episode]) -> Void) {
+        let host = "https://rickandmortyapi.com/api"
+        let path = "/episode"
+        
+        let params: Parameters = [
+            "name": name ?? ""
+                ]
+        
+        AF.request(host + path, parameters: params).responseData { (response) in
+            switch response.result {
+            case .success:
+                guard let data = response.value,
+                      let episodes = try? JSONDecoder().decode(EpisodeList.self, from: data).results
+                else { return }
+                completion(episodes)
+            case .failure(let error):
+                print(error.localizedDescription)
+                print(error)
+            }
+        }
+    }
+    
 }

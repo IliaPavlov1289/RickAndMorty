@@ -9,8 +9,8 @@ import UIKit
 
 class CharacterSpeciesFilterViewController: UIViewController {
     
-    private var charactersFilterView: FilterView {
-        return self.view as! FilterView
+    private var charactersFilterView: TableView {
+        return self.view as! TableView
     }
     private var criterias = FilterCriterias.shared
     private var filterCriterias = [
@@ -28,7 +28,7 @@ class CharacterSpeciesFilterViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        self.view = FilterView()
+        self.view = TableView()
     }
     
     override func viewDidLoad() {

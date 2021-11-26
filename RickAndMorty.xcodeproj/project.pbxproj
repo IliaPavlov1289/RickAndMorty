@@ -10,7 +10,7 @@
 		632311742750F2CF00E626CA /* LocationTypeFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632311732750F2CE00E626CA /* LocationTypeFilterViewController.swift */; };
 		63231176275102BA00E626CA /* LocationDimensionFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63231175275102BA00E626CA /* LocationDimensionFilterViewController.swift */; };
 		63346F072738431E007E642F /* HeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63346F062738431E007E642F /* HeaderTableViewCell.swift */; };
-		63366DDF2732CD7400DE3AAD /* FilterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63366DDE2732CD7400DE3AAD /* FilterView.swift */; };
+		63366DDF2732CD7400DE3AAD /* TableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63366DDE2732CD7400DE3AAD /* TableView.swift */; };
 		63366DE12732D02E00DE3AAD /* CharactersFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63366DE02732D02E00DE3AAD /* CharactersFilterViewController.swift */; };
 		63366DE32732E1FE00DE3AAD /* FilterCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63366DE22732E1FE00DE3AAD /* FilterCell.swift */; };
 		63413240274A64D3005D6344 /* CharacterNameFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6341323F274A64D3005D6344 /* CharacterNameFilterViewController.swift */; };
@@ -52,6 +52,7 @@
 		637495A12746A92600D0F2B5 /* CharacterDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637495A02746A92600D0F2B5 /* CharacterDetailsHeaderView.swift */; };
 		637495A52746D24500D0F2B5 /* sf-pro-display-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 637495A42746D24500D0F2B5 /* sf-pro-display-bold.ttf */; };
 		63D9402F274FBABA00187FB4 /* LocationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63D9402E274FBABA00187FB4 /* LocationCollectionViewCell.swift */; };
+		63F7B8CF2751632600B57B42 /* EpisodesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63F7B8CE2751632600B57B42 /* EpisodesViewController.swift */; };
 		65A0741B0E1E38FE9F775DE9 /* Pods_RickAndMorty.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 288E37DEE1B3DF705983A0A2 /* Pods_RickAndMorty.framework */; };
 /* End PBXBuildFile section */
 
@@ -62,7 +63,7 @@
 		632311732750F2CE00E626CA /* LocationTypeFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTypeFilterViewController.swift; sourceTree = "<group>"; };
 		63231175275102BA00E626CA /* LocationDimensionFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationDimensionFilterViewController.swift; sourceTree = "<group>"; };
 		63346F062738431E007E642F /* HeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderTableViewCell.swift; sourceTree = "<group>"; };
-		63366DDE2732CD7400DE3AAD /* FilterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterView.swift; sourceTree = "<group>"; };
+		63366DDE2732CD7400DE3AAD /* TableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableView.swift; sourceTree = "<group>"; };
 		63366DE02732D02E00DE3AAD /* CharactersFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharactersFilterViewController.swift; sourceTree = "<group>"; };
 		63366DE22732E1FE00DE3AAD /* FilterCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCell.swift; sourceTree = "<group>"; };
 		6341323F274A64D3005D6344 /* CharacterNameFilterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterNameFilterViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +107,7 @@
 		637495A02746A92600D0F2B5 /* CharacterDetailsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CharacterDetailsHeaderView.swift; sourceTree = "<group>"; };
 		637495A42746D24500D0F2B5 /* sf-pro-display-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "sf-pro-display-bold.ttf"; sourceTree = "<group>"; };
 		63D9402E274FBABA00187FB4 /* LocationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationCollectionViewCell.swift; sourceTree = "<group>"; };
+		63F7B8CE2751632600B57B42 /* EpisodesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EpisodesViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -297,7 +299,6 @@
 		63507D3D273035D4008CB402 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				63507D3E27303686008CB402 /* CollectionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -371,6 +372,7 @@
 		636768B1274EB4B400D95274 /* Episode */ = {
 			isa = PBXGroup;
 			children = (
+				63F7B8CE2751632600B57B42 /* EpisodesViewController.swift */,
 			);
 			path = Episode;
 			sourceTree = "<group>";
@@ -392,8 +394,9 @@
 		636768B4274EB55100D95274 /* CommonViews */ = {
 			isa = PBXGroup;
 			children = (
+				63507D3E27303686008CB402 /* CollectionView.swift */,
 				63507D40273036FB008CB402 /* CharactersCollectionViewCell.swift */,
-				63366DDE2732CD7400DE3AAD /* FilterView.swift */,
+				63366DDE2732CD7400DE3AAD /* TableView.swift */,
 				63366DE22732E1FE00DE3AAD /* FilterCell.swift */,
 				63693E7A27344C7600759076 /* RadioFilterCell.swift */,
 				63413241274A64EE005D6344 /* NameFilterView.swift */,
@@ -607,11 +610,12 @@
 				63413240274A64D3005D6344 /* CharacterNameFilterViewController.swift in Sources */,
 				63507D392730354C008CB402 /* NetworkManager.swift in Sources */,
 				63677DFD2751286B00072D5C /* LocationDetailsView.swift in Sources */,
+				63F7B8CF2751632600B57B42 /* EpisodesViewController.swift in Sources */,
 				63507D362730350A008CB402 /* UIColor+Extensions.swift in Sources */,
 				63507D3F27303686008CB402 /* CollectionView.swift in Sources */,
 				63413242274A64EE005D6344 /* NameFilterView.swift in Sources */,
 				63507D0D273022D7008CB402 /* SceneDelegate.swift in Sources */,
-				63366DDF2732CD7400DE3AAD /* FilterView.swift in Sources */,
+				63366DDF2732CD7400DE3AAD /* TableView.swift in Sources */,
 				63346F072738431E007E642F /* HeaderTableViewCell.swift in Sources */,
 				63D9402F274FBABA00187FB4 /* LocationCollectionViewCell.swift in Sources */,
 				637495A12746A92600D0F2B5 /* CharacterDetailsHeaderView.swift in Sources */,

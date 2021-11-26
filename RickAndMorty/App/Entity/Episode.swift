@@ -26,3 +26,8 @@ struct Episode: Codable {
         case created
     }
 }
+
+struct EpisodeList: Codable {
+    let results: [Episode]
+    let info: Info
+}

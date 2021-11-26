@@ -15,14 +15,14 @@ class LocationsFilterViewController: UIViewController {
     
     weak var delegate: LocationsFilterDelegate?
     
-    private var locationsFilterView: FilterView {
-        return self.view as! FilterView
+    private var locationsFilterView: TableView {
+        return self.view as! TableView
     }
     private var locations = FilterCriterias.shared
 
     override func loadView() {
         super.loadView()
-        self.view = FilterView()
+        self.view = TableView()
     }
     
     override func viewDidLoad() {

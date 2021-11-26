@@ -22,9 +22,3 @@ struct LocationrList: Codable {
     let info: Info
 }
 
-//struct Info: Codable {
-//    let count: Int
-//    let pages: Int
-//    let next: String?
-//    let prev: String?
-//}

@@ -96,7 +96,9 @@ extension LocationDetailsController: UICollectionViewDataSource {
         let url = self.characters[indexPath.row].image
         NetworkManager.shared.getImage(fromUrl: url) { (image) in
             guard let image = image else { return }
-            cell.characterImageView.image = image
+            DispatchQueue.main.async {
+                cell.characterImageView.image = image
+            }
         }
         return cell
         

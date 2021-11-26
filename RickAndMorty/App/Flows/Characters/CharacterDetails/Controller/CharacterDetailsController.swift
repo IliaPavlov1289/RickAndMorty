@@ -115,7 +115,7 @@ extension CharacterDetailsController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         switch section {
         case 0:
-            return 51.5
+            return 54.5
         case 1:
             return 74.0
         default:

@@ -69,4 +69,29 @@ class NetworkManager {
             }
         }
     }
+    
+    func getLocations(name: String?, type: String?, dimension: String?, completion: @escaping ([Location]) -> Void) {
+        let host = "https://rickandmortyapi.com/api"
+        let path = "/location"
+        
+        let params: Parameters = [
+            "name": name ?? "",
+            "type": type ?? "",
+            "dimension": dimension ?? ""
+                ]
+        
+        AF.request(host + path, parameters: params).responseData { (response) in
+            switch response.result {
+            case .success:
+                guard let data = response.value,
+                      let locations = try? JSONDecoder().decode(LocationrList.self, from: data).results
+                else { return }
+                completion(locations)
+            case .failure(let error):
+                print(error.localizedDescription)
+                print(error)
+            }
+        }
+    }
+    
 }

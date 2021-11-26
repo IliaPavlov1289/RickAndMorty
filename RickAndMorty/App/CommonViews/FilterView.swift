@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CharactersFilterView: UIView {
+class FilterView: UIView {
     
     private(set) lazy var tableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)

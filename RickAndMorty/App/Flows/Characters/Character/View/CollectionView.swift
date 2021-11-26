@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CharactersView: UIView {
+class CollectionView: UIView {
     
     private enum Constants {
         static let spacing: CGFloat = 16.0

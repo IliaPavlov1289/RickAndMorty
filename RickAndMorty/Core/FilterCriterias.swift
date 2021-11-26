@@ -23,6 +23,12 @@ class FilterCriterias {
         FilterCriteria(sectionName: "Gender", title: "Unknown", param: "Unknown", isSelected: false, subtitle: nil)]
     ]
     
+    var locationsFilterCriterias = [
+        FilterCriteria(sectionName: "Name", title: "Name", param: nil, isSelected: false, subtitle: "Give a name"),
+        FilterCriteria(sectionName: "Type", title: "Type", param: nil, isSelected: false, subtitle: "Select one"),
+        FilterCriteria(sectionName: "Dimension", title: "Dimension", param: nil, isSelected: false, subtitle: "Select one")
+    ]
+    
     private init () {
         
     }

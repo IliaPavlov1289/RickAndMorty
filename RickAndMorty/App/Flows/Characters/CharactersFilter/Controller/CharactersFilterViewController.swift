@@ -7,23 +7,23 @@
 
 import UIKit
 
-protocol FilterScreenDelegate: AnyObject {
+protocol CharactersFilterDelegate: AnyObject {
     func selectedParams(name: String?, status: String?, species: String?, gender: String?)
 }
 
 class CharactersFilterViewController: UIViewController {
     
-    weak var delegate: FilterScreenDelegate?
+    weak var delegate: CharactersFilterDelegate?
     
-    private var charactersFilterView: CharactersFilterView {
-        return self.view as! CharactersFilterView
+    private var charactersFilterView: FilterView {
+        return self.view as! FilterView
     }
     
     private var criterias = FilterCriterias.shared
 
     override func loadView() {
         super.loadView()
-        self.view = CharactersFilterView()
+        self.view = FilterView()
     }
 
     override func viewDidLoad() {
@@ -33,6 +33,7 @@ class CharactersFilterViewController: UIViewController {
         self.charactersFilterView.tableView.register(HeaderTableViewCell.self, forHeaderFooterViewReuseIdentifier: HeaderTableViewCell.identifier)
         self.charactersFilterView.tableView.dataSource = self
         self.charactersFilterView.tableView.delegate = self
+        
         self.charactersFilterView.tableView.separatorInset = UIEdgeInsets.init(top: 0, left: 56, bottom: 0, right: 0)
         self.charactersFilterView.tableView.contentInsetAdjustmentBehavior = .never
         self.charactersFilterView.tableView.sectionHeaderTopPadding = 0
@@ -54,12 +55,13 @@ class CharactersFilterViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if (self.criterias.charactersFilterCriterias.flatMap({ $0.filter({ $0.isSelected == true }) }).count != 0) {
-            self.navigationItem.leftBarButtonItem?.customView?.isHidden = false
-        } else {
-            self.navigationItem.leftBarButtonItem?.customView?.isHidden = true
-        }
+        self.toggleClearButton()
         self.charactersFilterView.tableView.reloadData()
+    }
+    
+    private func toggleClearButton() {
+        let hasSelectedItems = (self.criterias.charactersFilterCriterias.flatMap({ $0.filter({ $0.isSelected == true }) }).count != 0)
+        self.navigationItem.leftBarButtonItem?.customView?.isHidden = hasSelectedItems ? false : true
     }
     
     @objc private func applyFilterCriterias() {
@@ -183,12 +185,7 @@ extension CharactersFilterViewController: UITableViewDataSource {
             }
             self.criterias.charactersFilterCriterias[indexPath.section][indexPath.row].isSelected =  !self.criterias.charactersFilterCriterias[indexPath.section][indexPath.row].isSelected
             
-            if (self.criterias.charactersFilterCriterias.flatMap({ $0.filter({ $0.isSelected == true }) }).count != 0) {
-                self.navigationItem.leftBarButtonItem?.customView?.isHidden = false
-            } else {
-                self.navigationItem.leftBarButtonItem?.customView?.isHidden = true
-            }
-    
+            self.toggleClearButton()
             self.charactersFilterView.tableView.reloadData()
         default:
             return

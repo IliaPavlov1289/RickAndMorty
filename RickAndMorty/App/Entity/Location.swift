@@ -16,3 +16,15 @@ struct Location: Codable {
     let url: URL
     let created: String
 }
+
+struct LocationrList: Codable {
+    let results: [Location]
+    let info: Info
+}
+
+//struct Info: Codable {
+//    let count: Int
+//    let pages: Int
+//    let next: String?
+//    let prev: String?
+//}

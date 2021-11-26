@@ -9,6 +9,11 @@ import UIKit
 
 class CharacterDetailsController: UIViewController {
     
+    private enum Constants {
+        static let sectionCount: Int = 2
+        static let cellCount: Int = 4
+    }
+    
     private var characterDetailsView: CharacterDetailsView {
         return self.view as! CharacterDetailsView
     }
@@ -39,16 +44,23 @@ class CharacterDetailsController: UIViewController {
         self.characterDetailsView.tableView.register(HeaderSection.self, forHeaderFooterViewReuseIdentifier: HeaderSection.identifier)
         self.characterDetailsView.tableView.delegate = self
         self.characterDetailsView.tableView.dataSource = self
+        
         self.characterDetailsView.tableView.sectionHeaderTopPadding = 0
         self.characterDetailsView.tableView.sectionFooterHeight = 0
 
         self.createNavigationTitle()
-        self.setupBakcButton()
+        self.setupBackButton()
         self.getEpisodes()
     }
     
     @objc private func goToBack() {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    private func setupBackButton() {
+        let backButton = UIButton.createBackButton()
+        backButton.addTarget(self, action: #selector(goToBack), for: .touchUpInside)
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
     }
     
     private func createNavigationTitle(){
@@ -59,12 +71,6 @@ class CharacterDetailsController: UIViewController {
         paragraphStyle.lineHeightMultiple = 1.12
         self.navigationController?.navigationBar.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black, NSAttributedString.Key.kern: -0.24, NSAttributedString.Key.paragraphStyle: paragraphStyle, NSAttributedString.Key.font: UIFont.init(name: "SFProText-Semibold", size: 15.0) ?? UIFont.systemFont(ofSize: 15.0)]
         self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
-    }
-    
-    private func setupBakcButton() {
-        let backButton = UIButton.createBackButton()
-        backButton.addTarget(self, action: #selector(goToBack), for: .touchUpInside)
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(customView: backButton)
     }
     
     private func getEpisodes() {
@@ -85,11 +91,8 @@ class CharacterDetailsController: UIViewController {
         NetworkManager.shared.getImage(fromUrl: url) { (image) in
             guard let image = image else { return }
             self.characterDetailsView.characterDetailsHeaderView.avatarImage.image = image
-            
         }
-        
     }
-    
 }
 
 extension CharacterDetailsController: UITableViewDelegate {
@@ -125,17 +128,17 @@ extension CharacterDetailsController: UITableViewDelegate {
 extension CharacterDetailsController: UITableViewDataSource {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        2
+        Constants.sectionCount
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
         case 0:
-            return 4
+            return Constants.cellCount
         case 1:
             return self.episodes.count
         default:
-            return 4
+            return 0
         }
     }
     
@@ -172,13 +175,10 @@ extension CharacterDetailsController: UITableViewDataSource {
                 cell.dateLabel.text = self.episodes[indexPath.row].airDate.uppercased()
   
                 return cell
-
         }
             return UITableViewCell()
         default:
             return UITableViewCell()
         }
     }
-    
-    
 }

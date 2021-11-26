@@ -37,8 +37,10 @@ class LocationNameFilterViewController: UIViewController {
         
         NetworkManager.shared.getLocations(name: name, type: nil, dimension: nil) { [weak self] (locations) in
             guard let self = self else {return}
-            self.locations = locations
-            self.locationsFilterView.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.locations = locations
+                self.locationsFilterView.tableView.reloadData()
+            }
         }
         
         let navigationTitleView = NavigationTitleView()
@@ -78,10 +80,10 @@ extension LocationNameFilterViewController: UITableViewDataSource {
         return UITableViewCell()
     }
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let characterDetailsController = CharacterDetailsController(character: self.characters[indexPath.row])
-//        self.navigationController?.pushViewController(characterDetailsController, animated: true)
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let locationDetailsController = LocationDetailsController(location: self.locations[indexPath.row])
+        navigationController?.pushViewController(locationDetailsController, animated: true)
+    }
 }
 
 extension LocationNameFilterViewController: UISearchBarDelegate {

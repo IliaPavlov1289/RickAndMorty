@@ -31,7 +31,7 @@ class CharacterDetailsHeaderView: UIView {
     private(set) lazy var statusLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.gray
-        label.font = UIFont.init(name: "SFProText-Regular", size: 13.0)
+        label.font = UIFont.init(name: "SFProText-Regular", size: 11.0)
         
         var paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 0.99

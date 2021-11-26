@@ -41,6 +41,21 @@ class NetworkManager {
         }
     }
     
+    func getCharacter(url: String, completion: @escaping (Character) -> Void) {
+        
+        AF.request(url).responseData { (response) in
+            switch response.result {
+            case .success:
+                guard let data = response.value,
+                      let character = try? JSONDecoder().decode(Character.self, from: data)
+                else { return }
+                completion(character)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     public func getImage(fromUrl url: URLConvertible, completion: @escaping (UIImage?) -> Void) {
         AF.request(url).responseData { (response) in
             switch response.result {

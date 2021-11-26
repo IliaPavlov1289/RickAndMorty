@@ -51,7 +51,7 @@ class CharacterDetailsView: UIView {
         self.tableView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            self.tableView.topAnchor.constraint(equalTo: self.characterDetailsHeaderView.safeAreaLayoutGuide.bottomAnchor),
+            self.tableView.topAnchor.constraint(equalTo: self.characterDetailsHeaderView.bottomAnchor),
             self.tableView.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor),
             self.tableView.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor),
             self.tableView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor)

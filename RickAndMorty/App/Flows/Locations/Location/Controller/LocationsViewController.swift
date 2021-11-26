@@ -81,7 +81,10 @@ extension LocationsViewController: UICollectionViewDataSource {
 }
 
 extension LocationsViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let locationDetailsController = LocationDetailsController(location: self.locations[indexPath.row])
+        navigationController?.pushViewController(locationDetailsController, animated: true)
+    }
 }
     
 extension LocationsViewController: UICollectionViewDelegateFlowLayout {

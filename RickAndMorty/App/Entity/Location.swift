@@ -12,7 +12,7 @@ struct Location: Codable {
     let name: String
     let type: String
     let dimension: String
-    let residents: [URL]
+    let residents: [String]
     let url: URL
     let created: String
 }

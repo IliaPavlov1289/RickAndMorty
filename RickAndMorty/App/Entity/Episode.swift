@@ -12,7 +12,7 @@ struct Episode: Codable {
     let name: String
     let airDate: String
     let episode: String
-    let characters: [URL]
+    let characters: [String]
     let url: URL
     let created: String
     

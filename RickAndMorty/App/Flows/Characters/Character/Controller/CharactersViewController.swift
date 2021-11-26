@@ -16,16 +16,15 @@ class CharactersViewController: UIViewController {
         static let itemsInRow: CGFloat = 2.0
     }
                                 
-    
-    private var charactersView: CharactersView {
-        return self.view as! CharactersView
+    private var charactersView: CollectionView {
+        return self.view as! CollectionView
     }
     private var button: UIButton?
     private var characters = [Character]()
     
     override func loadView() {
         super.loadView()
-        self.view = CharactersView()
+        self.view = CollectionView()
     }
 
     override func viewDidLoad() {
@@ -64,9 +63,7 @@ class CharactersViewController: UIViewController {
         charactersFilterViewController.delegate = self
         let navigationController = UINavigationController(rootViewController: charactersFilterViewController)
         present(navigationController, animated: true, completion: nil)
-            
     }
-    
 }
 
 extension CharactersViewController: UICollectionViewDataSource {
@@ -125,14 +122,11 @@ extension CharactersViewController: UICollectionViewDelegateFlowLayout {
     }
 }
 
-extension CharactersViewController: FilterScreenDelegate {
+extension CharactersViewController: CharactersFilterDelegate {
     func selectedParams(name: String?, status: String?, species: String?, gender: String?) {
-        if (name != nil || status != nil || species != nil || gender != nil) {
-
-            self.button?.imageView?.isHidden = false
-        } else {
-            self.button?.imageView?.isHidden = true
-                }
+        
+        let notEmptyParams = (name != nil || status != nil || species != nil || gender != nil)
+        self.button?.imageView?.isHidden = notEmptyParams ? false : true
         
         NetworkManager.shared.getCaracters(name: name, status: status, species: species, gender: gender) { [weak self] (characters) in
             guard let self = self else {return}

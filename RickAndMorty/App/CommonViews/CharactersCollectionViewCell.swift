@@ -33,7 +33,7 @@ class CharactersCollectionViewCell: UICollectionViewCell {
         label.font = UIFont.init(name: "SFProText-Semibold", size: 17.0)
         
         var paragraphStyle = NSMutableParagraphStyle()
-        paragraphStyle.lineHeightMultiple = 1.08
+        paragraphStyle.lineHeightMultiple = 0.90
         
         label.attributedText = NSMutableAttributedString(string: "Summer Smith", attributes: [NSAttributedString.Key.kern: -0.41, NSAttributedString.Key.paragraphStyle: paragraphStyle])
         label.numberOfLines = 0

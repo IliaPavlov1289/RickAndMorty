@@ -23,14 +23,15 @@ class CharacterNameFilterViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.charactersFilterView.tableView.register(CharacterDetailsInformationCell.self, forCellReuseIdentifier: CharacterDetailsInformationCell.identifier)
-        self.charactersFilterView.tableView.sectionHeaderTopPadding = 0
-        self.charactersFilterView.tableView.sectionFooterHeight = 0
-        self.charactersFilterView.tableView.sectionHeaderHeight = 0
         self.charactersFilterView.tableView.dataSource = self
         self.charactersFilterView.tableView.delegate = self
         self.charactersFilterView.searchBar.delegate = self
         
-        let name = criterias.charactersFilterCriterias[0][0].param
+        self.charactersFilterView.tableView.sectionHeaderTopPadding = 0
+        self.charactersFilterView.tableView.sectionFooterHeight = 0
+        self.charactersFilterView.tableView.sectionHeaderHeight = 0
+        
+        let name = self.criterias.charactersFilterCriterias[0][0].param
         self.charactersFilterView.searchBar.searchTextField.text = name
         
         NetworkManager.shared.getCaracters(name: name, status: nil, species: nil, gender: nil) { [weak self] (characters) in
@@ -60,7 +61,6 @@ extension CharacterNameFilterViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         .leastNonzeroMagnitude
     }
-    
 }
 
 extension CharacterNameFilterViewController: UITableViewDataSource {
@@ -108,9 +108,6 @@ extension CharacterNameFilterViewController: UISearchBarDelegate {
         self.characters = []
         self.setupNameParametrs(param: nil, isSelected: false, subtitle: "Give a name")
         self.charactersFilterView.noResultsLabel.isHidden = false
-        
         self.charactersFilterView.tableView.reloadData()
-        
     }
-    
 }

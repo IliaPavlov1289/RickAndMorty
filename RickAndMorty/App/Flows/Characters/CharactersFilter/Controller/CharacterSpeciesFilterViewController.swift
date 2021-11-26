@@ -9,8 +9,8 @@ import UIKit
 
 class CharacterSpeciesFilterViewController: UIViewController {
     
-    private var charactersFilterView: CharactersFilterView {
-        return self.view as! CharactersFilterView
+    private var charactersFilterView: FilterView {
+        return self.view as! FilterView
     }
     private var criterias = FilterCriterias.shared
     private var filterCriterias = [
@@ -28,7 +28,7 @@ class CharacterSpeciesFilterViewController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        self.view = CharactersFilterView()
+        self.view = FilterView()
     }
     
     override func viewDidLoad() {
@@ -36,6 +36,7 @@ class CharacterSpeciesFilterViewController: UIViewController {
         self.charactersFilterView.tableView.register(RadioFilterCell.self, forCellReuseIdentifier: RadioFilterCell.identifier)
         self.charactersFilterView.tableView.dataSource = self
         self.charactersFilterView.tableView.delegate = self
+        
         self.charactersFilterView.tableView.separatorInset = UIEdgeInsets.init(top: 0, left: 56, bottom: 0, right: 0)
         self.charactersFilterView.tableView.sectionHeaderTopPadding = 0
         self.charactersFilterView.tableView.sectionFooterHeight = 0
@@ -57,7 +58,6 @@ class CharacterSpeciesFilterViewController: UIViewController {
     @objc private func goToBack() {
         self.navigationController?.popViewController(animated: true)
     }
-    
 }
 
 extension CharacterSpeciesFilterViewController: UITableViewDelegate {
@@ -65,7 +65,6 @@ extension CharacterSpeciesFilterViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         .leastNonzeroMagnitude
     }
-    
 }
 
 extension CharacterSpeciesFilterViewController: UITableViewDataSource {

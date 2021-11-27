@@ -29,6 +29,10 @@ class FilterCriterias {
         FilterCriteria(sectionName: "Dimension", title: "Dimension", param: nil, isSelected: false, subtitle: "Select one")
     ]
     
+    var episodesFilterCriterias = [
+        FilterCriteria(sectionName: "Name", title: "Name", param: nil, isSelected: false, subtitle: "Give a name")
+        ]
+    
     private init () {
         
     }

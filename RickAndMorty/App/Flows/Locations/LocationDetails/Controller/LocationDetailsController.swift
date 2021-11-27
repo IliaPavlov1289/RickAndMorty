@@ -15,8 +15,8 @@ class LocationDetailsController: UIViewController {
         static let itemsInRow: CGFloat = 2.0
     }
     
-    private var locationDetailsView: LocationDetailsView {
-        return self.view as! LocationDetailsView
+    private var locationDetailsView: DetailsView {
+        return self.view as! DetailsView
     }
     private var location: Location
     private var characters = [Character]()
@@ -32,7 +32,7 @@ class LocationDetailsController: UIViewController {
     
     override func loadView() {
         super.loadView()
-        self.view = LocationDetailsView()
+        self.view = DetailsView()
     }
 
     override func viewDidLoad() {

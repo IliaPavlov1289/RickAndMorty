@@ -14,6 +14,7 @@ class EpisodesViewController: UIViewController {
     }
     private var button: UIButton?
     private var episodes = [Episode]()
+    private var seasons = [String]()
     
     override func loadView() {
         super.loadView()
@@ -49,8 +50,12 @@ class EpisodesViewController: UIViewController {
     private func getEpisodes(){
         NetworkManager.shared.getEpisodes(name: nil) { [weak self] (episodes) in
             guard let self = self else {return}
-            self.episodes = episodes
-            self.episodesView.tableView.reloadData()
+            DispatchQueue.main.async {
+                self.episodes = episodes
+                let episodesSeason = self.episodes.map({ String($0.episode.dropLast(3)) })
+                self.seasons = Array(Set(episodesSeason)).sorted()
+                self.episodesView.tableView.reloadData()
+            }
         }
     }
     
@@ -63,10 +68,10 @@ class EpisodesViewController: UIViewController {
     
     @objc private func openFilterCriterias() {
         print()
-//        let locationsFilterViewController = LocationsFilterViewController()
-//        locationsFilterViewController.delegate = self
-//        let navigationController = UINavigationController(rootViewController: locationsFilterViewController)
-//        present(navigationController, animated: true, completion: nil)
+        let episodesFilterViewController = EpisodesFilterViewController()
+        episodesFilterViewController.delegate = self
+        let navigationController = UINavigationController(rootViewController: episodesFilterViewController)
+        present(navigationController, animated: true, completion: nil)
     }
 }
 
@@ -74,7 +79,7 @@ extension EpisodesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: HeaderSection.identifier) as? HeaderSection {
-            header.label.text = "Season \(section + 1)"
+            header.label.text = "Season \(self.seasons[section].dropFirst(2))"
             return header
         }
         return nil
@@ -105,12 +110,12 @@ extension EpisodesViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        self.episodes.filter({ $0.episode.contains("S0\(section + 1)") }).count
+        self.episodes.filter({ $0.episode.contains(self.seasons[section]) }).count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: EpisodeCell.identifier, for: indexPath) as? EpisodeCell {
-            let seasonEpisodes = self.episodes.filter({ $0.episode.contains("S0\(indexPath.section + 1)") })
+            let seasonEpisodes = self.episodes.filter({ $0.episode.contains(self.seasons[indexPath.section]) })
             
             cell.label.text = seasonEpisodes[indexPath.row].episode
             cell.subLabel.text = seasonEpisodes[indexPath.row].name
@@ -119,5 +124,25 @@ extension EpisodesViewController: UITableViewDataSource {
             return cell
     }
         return UITableViewCell()
+    }
+}
+
+extension EpisodesViewController: EpisodesFilterDelegate {
+    func selectedParams(name: String?) {
+        self.button?.imageView?.isHidden = (name != nil) ? false : true
+        
+        NetworkManager.shared.getEpisodes(name: name) { [weak self] (episodes) in
+            guard let self = self else {return}
+            DispatchQueue.main.async {
+                self.episodes = episodes
+                let episodesSeason = self.episodes.map({ String($0.episode.dropLast(3)) })
+                self.seasons = Array(Set(episodesSeason)).sorted()
+                self.episodesView.noResultsLabel.isHidden = true
+                self.episodesView.tableView.reloadData()
+            }
+        }
+        self.episodes = []
+        self.episodesView.noResultsLabel.isHidden = false
+        self.episodesView.tableView.reloadData()
     }
 }

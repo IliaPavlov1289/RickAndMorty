@@ -107,6 +107,8 @@ extension LocationsFilterViewController: UITableViewDelegate {
 
 extension LocationsFilterViewController: UITableViewDataSource {
     
+
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         self.locations.locationsFilterCriterias.count
     }

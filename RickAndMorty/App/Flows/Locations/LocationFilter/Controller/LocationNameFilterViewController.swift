@@ -22,7 +22,7 @@ class LocationNameFilterViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.locationsFilterView.tableView.register(CharacterDetailsInformationCell.self, forCellReuseIdentifier: CharacterDetailsInformationCell.identifier)
+        self.locationsFilterView.tableView.register(DetailsInformationCell.self, forCellReuseIdentifier: DetailsInformationCell.identifier)
         self.locationsFilterView.tableView.dataSource = self
         self.locationsFilterView.tableView.delegate = self
         self.locationsFilterView.searchBar.delegate = self
@@ -71,7 +71,7 @@ extension LocationNameFilterViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let cell = tableView.dequeueReusableCell(withIdentifier: CharacterDetailsInformationCell.identifier, for: indexPath) as? CharacterDetailsInformationCell {
+        if let cell = tableView.dequeueReusableCell(withIdentifier: DetailsInformationCell.identifier, for: indexPath) as? DetailsInformationCell {
             cell.label.text = self.locations[indexPath.row].name
             cell.subLabel.text = self.locations[indexPath.row].type
 

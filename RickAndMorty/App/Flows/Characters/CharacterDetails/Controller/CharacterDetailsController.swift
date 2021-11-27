@@ -39,7 +39,7 @@ class CharacterDetailsController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.createCharacterDetailsHeaderView()
-        self.characterDetailsView.tableView.register(CharacterDetailsInformationCell.self, forCellReuseIdentifier: CharacterDetailsInformationCell.identifier)
+        self.characterDetailsView.tableView.register(DetailsInformationCell.self, forCellReuseIdentifier: DetailsInformationCell.identifier)
         self.characterDetailsView.tableView.register(EpisodeCell.self, forCellReuseIdentifier: EpisodeCell.identifier)
         self.characterDetailsView.tableView.register(HeaderSection.self, forHeaderFooterViewReuseIdentifier: HeaderSection.identifier)
         self.characterDetailsView.tableView.delegate = self
@@ -145,7 +145,7 @@ extension CharacterDetailsController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
-            if let cell = tableView.dequeueReusableCell(withIdentifier: CharacterDetailsInformationCell.identifier, for: indexPath) as? CharacterDetailsInformationCell {
+            if let cell = tableView.dequeueReusableCell(withIdentifier: DetailsInformationCell.identifier, for: indexPath) as? DetailsInformationCell {
                 cell.arrowImageView.isHidden = true
                 switch indexPath.row {
                 case 0:

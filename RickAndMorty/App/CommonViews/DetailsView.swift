@@ -7,14 +7,14 @@
 
 import UIKit
 
-class LocationDetailsView: UIView {
+class DetailsView: UIView {
     
     private enum Constants {
         static let spacing: CGFloat = 20.0
         static let smallSpacing: CGFloat = 16.0
     }
 
-    private(set) var locationDetailsHeaderView = LocationDetailsHeaderView()
+    private(set) var locationDetailsHeaderView = DetailsHeaderView()
     
     private(set) lazy var residentslabel: UILabel = {
         let label = UILabel()

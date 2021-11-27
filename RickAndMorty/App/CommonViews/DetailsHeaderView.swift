@@ -1,5 +1,5 @@
 //
-//  LocationDetailsHeaderView.swift
+//  DetailsHeaderView.swift
 //  RickAndMorty
 //
 //  Created by Илья Павлов on 26.11.2021.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-class LocationDetailsHeaderView: UIView {
+class DetailsHeaderView: UIView {
     
     private enum Constants {
         static let spacing: CGFloat = 20.0

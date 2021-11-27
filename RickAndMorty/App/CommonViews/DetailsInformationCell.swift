@@ -7,7 +7,7 @@
 
 import UIKit
 
-class CharacterDetailsInformationCell: UITableViewCell {
+class DetailsInformationCell: UITableViewCell {
     
     private(set) lazy var label: UILabel = {
         let label = UILabel()
@@ -97,7 +97,7 @@ class CharacterDetailsInformationCell: UITableViewCell {
     }
 }
 
-extension CharacterDetailsInformationCell: ReusableView {
+extension DetailsInformationCell: ReusableView {
     static var identifier: String {
         return String(describing: self)
     }

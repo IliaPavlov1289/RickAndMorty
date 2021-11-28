@@ -70,6 +70,7 @@ extension CharacterNameFilterViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: DetailsInformationCell.identifier, for: indexPath) as? DetailsInformationCell {
+            cell.selectionStyle = .none
             cell.label.text = self.characters[indexPath.row].name
             cell.subLabel.text = self.characters[indexPath.row].status
 

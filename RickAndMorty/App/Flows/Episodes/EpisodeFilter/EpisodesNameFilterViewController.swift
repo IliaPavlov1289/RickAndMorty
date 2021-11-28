@@ -72,6 +72,7 @@ extension EpisodesNameFilterViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: DetailsInformationCell.identifier, for: indexPath) as? DetailsInformationCell {
+            cell.selectionStyle = .none
             cell.label.text = self.episodes[indexPath.row].name
             cell.subLabel.text = self.episodes[indexPath.row].airDate
 
@@ -81,7 +82,8 @@ extension EpisodesNameFilterViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        let episodeDetailsController = EpisodeDetailsController(episode: self.episodes[indexPath.row])
+        navigationController?.pushViewController(episodeDetailsController, animated: true)
     }
 }
 

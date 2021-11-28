@@ -131,4 +131,19 @@ class NetworkManager {
         }
     }
     
+    func getLocation(url: String, completion: @escaping (Location) -> Void) {
+        
+        AF.request(url).responseData { (response) in
+            switch response.result {
+            case .success:
+                guard let data = response.value,
+                      let location = try? JSONDecoder().decode(Location.self, from: data)
+                else { return }
+                completion(location)
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
 }

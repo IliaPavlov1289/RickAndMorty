@@ -1,28 +1,28 @@
 //
-//  LocationDetailsController.swift
+//  EpisodeDetailsController.swift
 //  RickAndMorty
 //
-//  Created by Илья Павлов on 26.11.2021.
+//  Created by Илья Павлов on 27.11.2021.
 //
 
 import UIKit
 
-class LocationDetailsController: UIViewController {
-    
+class EpisodeDetailsController: UIViewController {
+
     private enum Constants {
         static let spacing: CGFloat = 16.0
         static let heightCardDescription: CGFloat = 79.0
         static let itemsInRow: CGFloat = 2.0
     }
     
-    private var locationDetailsView: DetailsView {
+    private var episodeDetailsView: DetailsView {
         return self.view as! DetailsView
     }
-    private var location: Location
+    private var episode: Episode
     private var characters = [Character]()
     
-    init(location: Location) {
-        self.location = location
+    init(episode: Episode) {
+        self.episode = episode
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -38,9 +38,10 @@ class LocationDetailsController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.createLocationDetailsHeaderView()
-        self.locationDetailsView.collectionView.register(CharactersCollectionViewCell.self, forCellWithReuseIdentifier: CharactersCollectionViewCell.identifier)
-        self.locationDetailsView.collectionView.delegate = self
-        self.locationDetailsView.collectionView.dataSource = self
+        self.episodeDetailsView.collectionView.register(CharactersCollectionViewCell.self, forCellWithReuseIdentifier: CharactersCollectionViewCell.identifier)
+        self.episodeDetailsView.collectionView.delegate = self
+        self.episodeDetailsView.collectionView.dataSource = self
+        self.episodeDetailsView.residentslabel.text = "Characters"
         
         self.createNavigationTitle()
         self.setupBackButton()
@@ -48,14 +49,14 @@ class LocationDetailsController: UIViewController {
     }
     private func createLocationDetailsHeaderView() {
         
-        self.locationDetailsView.locationDetailsHeaderView.upLabel.text = location.type
-        self.locationDetailsView.locationDetailsHeaderView.nameLabel.text = location.name
-        self.locationDetailsView.locationDetailsHeaderView.downLabel.text = location.dimension.uppercased()
+        self.episodeDetailsView.locationDetailsHeaderView.upLabel.text = episode.airDate
+        self.episodeDetailsView.locationDetailsHeaderView.nameLabel.text = episode.name
+        self.episodeDetailsView.locationDetailsHeaderView.downLabel.text = episode.episode.uppercased()
     }
     
     private func createNavigationTitle(){
         self.navigationItem.largeTitleDisplayMode = .never
-        self.navigationItem.title = location.name
+        self.navigationItem.title = episode.name
         self.navigationController?.navigationBar.backgroundColor = UIColor.lightestGray
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 1.12
@@ -74,15 +75,15 @@ class LocationDetailsController: UIViewController {
     }
     
     private func getCharacters() {
-        self.location.residents.forEach({ NetworkManager.shared.getCharacter(url: $0) { [weak self] (character) in
+        self.episode.characters.forEach({ NetworkManager.shared.getCharacter(url: $0) { [weak self] (character) in
             guard let self = self else {return}
             self.characters.append(character)
-            self.locationDetailsView.collectionView.reloadData()
+            self.episodeDetailsView.collectionView.reloadData()
         }})
     }
 }
 
-extension LocationDetailsController: UICollectionViewDataSource {
+extension EpisodeDetailsController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return self.characters.count
     }
@@ -105,14 +106,14 @@ extension LocationDetailsController: UICollectionViewDataSource {
     }
 }
 
-extension LocationDetailsController: UICollectionViewDelegate {
+extension EpisodeDetailsController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let characterDetailsController = CharacterDetailsController(character: self.characters[indexPath.row])
         navigationController?.pushViewController(characterDetailsController, animated: true)
     }
 }
 
-extension LocationDetailsController: UICollectionViewDelegateFlowLayout {
+extension EpisodeDetailsController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
 
         let width = itemWidth(for: self.view.frame.width, spacing: Constants.spacing)

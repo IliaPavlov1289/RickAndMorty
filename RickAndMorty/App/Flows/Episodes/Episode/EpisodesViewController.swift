@@ -93,6 +93,11 @@ extension EpisodesViewController: UITableViewDelegate {
             return 74.0
         }
     }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let episodeDetailsController = EpisodeDetailsController(episode: self.episodes[indexPath.row])
+        navigationController?.pushViewController(episodeDetailsController, animated: true)
+    }
 }
 
 extension EpisodesViewController: UITableViewDataSource {
@@ -116,7 +121,7 @@ extension EpisodesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: EpisodeCell.identifier, for: indexPath) as? EpisodeCell {
             let seasonEpisodes = self.episodes.filter({ $0.episode.contains(self.seasons[indexPath.section]) })
-            
+            cell.selectionStyle = .none
             cell.label.text = seasonEpisodes[indexPath.row].episode
             cell.subLabel.text = seasonEpisodes[indexPath.row].name
             cell.dateLabel.text = seasonEpisodes[indexPath.row].airDate.uppercased()

@@ -12,6 +12,7 @@ class CharacterDetailsController: UIViewController {
     private enum Constants {
         static let sectionCount: Int = 2
         static let cellCount: Int = 4
+        static let locationCellIndex: Int = 3
     }
     
     private var characterDetailsView: CharacterDetailsView {
@@ -19,6 +20,7 @@ class CharacterDetailsController: UIViewController {
     }
     
     private var character: Character
+    private var location: Location?
     private var episodes = [Episode]()
     
     
@@ -147,6 +149,7 @@ extension CharacterDetailsController: UITableViewDataSource {
         case 0:
             if let cell = tableView.dequeueReusableCell(withIdentifier: DetailsInformationCell.identifier, for: indexPath) as? DetailsInformationCell {
                 cell.arrowImageView.isHidden = true
+                cell.selectionStyle = .none
                 switch indexPath.row {
                 case 0:
                     cell.label.text = "Gender"
@@ -170,6 +173,7 @@ extension CharacterDetailsController: UITableViewDataSource {
         case 1:
             if let cell = tableView.dequeueReusableCell(withIdentifier: EpisodeCell.identifier, for: indexPath) as? EpisodeCell {
                 
+                cell.selectionStyle = .none
                 cell.label.text = self.episodes[indexPath.row].episode
                 cell.subLabel.text = self.episodes[indexPath.row].name
                 cell.dateLabel.text = self.episodes[indexPath.row].airDate.uppercased()
@@ -179,6 +183,31 @@ extension CharacterDetailsController: UITableViewDataSource {
             return UITableViewCell()
         default:
             return UITableViewCell()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        switch indexPath.section {
+        case 0:
+            if (indexPath.row == Constants.locationCellIndex) {
+                NetworkManager.shared.getLocation(url: self.character.location.url) { [weak self] (location) in
+                    guard let self = self else {return}
+                    DispatchQueue.main.async {
+                        self.location = location
+                    }
+                }
+                guard self.location != nil else {return}
+                let locationDetailsController = LocationDetailsController(location: self.location!)
+                navigationController?.pushViewController(locationDetailsController, animated: true)
+            } else { return }
+            
+        case 1:
+            let episodeDetailsController = EpisodeDetailsController(episode: self.episodes[indexPath.row])
+            navigationController?.pushViewController(episodeDetailsController, animated: true)
+            
+        default:
+            return
         }
     }
 }

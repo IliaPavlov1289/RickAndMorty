@@ -72,6 +72,7 @@ extension LocationNameFilterViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: DetailsInformationCell.identifier, for: indexPath) as? DetailsInformationCell {
+            cell.selectionStyle = .none
             cell.label.text = self.locations[indexPath.row].name
             cell.subLabel.text = self.locations[indexPath.row].type
 

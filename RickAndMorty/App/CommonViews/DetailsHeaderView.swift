@@ -13,7 +13,7 @@ class DetailsHeaderView: UIView {
         static let spacing: CGFloat = 20.0
     }
 
-    private(set) lazy var typeLabel: UILabel = {
+    private(set) lazy var upLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.gray
         label.font = UIFont.init(name: "SFProText-Regular", size: 11.0)
@@ -40,7 +40,7 @@ class DetailsHeaderView: UIView {
         return label
     }()
     
-    private(set) lazy var dimensionLabel: UILabel = {
+    private(set) lazy var downLabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.gray1
         label.font = UIFont.init(name: "SFProText-Semibold", size: 13.0)
@@ -67,36 +67,36 @@ class DetailsHeaderView: UIView {
     }
     
     func setupViews() {
-        self.addSubview(self.typeLabel)
+        self.addSubview(self.upLabel)
         self.addSubview(self.nameLabel)
-        self.addSubview(self.dimensionLabel)
+        self.addSubview(self.downLabel)
     }
 
     func setupLayouts() {
         
-        self.typeLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.upLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            self.typeLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: Constants.spacing),
-            self.typeLabel.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: Constants.spacing),
-            self.typeLabel.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor, constant: -Constants.spacing)
+            self.upLabel.topAnchor.constraint(equalTo: self.safeAreaLayoutGuide.topAnchor, constant: Constants.spacing),
+            self.upLabel.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: Constants.spacing),
+            self.upLabel.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor, constant: -Constants.spacing)
         ])
         
         self.nameLabel.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            self.nameLabel.topAnchor.constraint(equalTo: self.typeLabel.bottomAnchor),
+            self.nameLabel.topAnchor.constraint(equalTo: self.upLabel.bottomAnchor),
             self.nameLabel.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: Constants.spacing),
             self.nameLabel.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor, constant: -Constants.spacing)
         ])
         
-        self.dimensionLabel.translatesAutoresizingMaskIntoConstraints = false
+        self.downLabel.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
-            self.dimensionLabel.topAnchor.constraint(equalTo: self.nameLabel.bottomAnchor),
-            self.dimensionLabel.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: Constants.spacing),
-            self.dimensionLabel.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor, constant: -Constants.spacing),
-            self.dimensionLabel.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -Constants.spacing)
+            self.downLabel.topAnchor.constraint(equalTo: self.nameLabel.bottomAnchor),
+            self.downLabel.leftAnchor.constraint(equalTo: self.safeAreaLayoutGuide.leftAnchor, constant: Constants.spacing),
+            self.downLabel.rightAnchor.constraint(equalTo: self.safeAreaLayoutGuide.rightAnchor, constant: -Constants.spacing),
+            self.downLabel.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -Constants.spacing)
         ])
     }
 

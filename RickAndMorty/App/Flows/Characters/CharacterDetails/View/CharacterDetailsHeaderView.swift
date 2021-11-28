@@ -12,7 +12,6 @@ class CharacterDetailsHeaderView: UIView {
     private(set) lazy var backgroundImage: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.contentMode = .scaleToFill
-        imageView.backgroundColor = .cyan
         imageView.image = UIImage(named: "characterBackground")
         return imageView
     }()
@@ -20,7 +19,6 @@ class CharacterDetailsHeaderView: UIView {
     private(set) lazy var avatarImage: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.contentMode = .scaleToFill
-        imageView.backgroundColor = .cyan
         imageView.layer.borderColor = UIColor.gray6.cgColor
         imageView.layer.borderWidth = 5.0
         imageView.layer.cornerRadius = 70.0

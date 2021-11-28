@@ -23,7 +23,6 @@ class CharactersCollectionViewCell: UICollectionViewCell {
     private(set) lazy var characterImageView: UIImageView = {
         let imageView = UIImageView(frame: .zero)
         imageView.contentMode = .scaleAspectFit
-        imageView.backgroundColor = .cyan
         return imageView
     }()
     

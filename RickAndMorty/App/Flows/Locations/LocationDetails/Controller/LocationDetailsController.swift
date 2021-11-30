@@ -20,6 +20,7 @@ class LocationDetailsController: UIViewController {
     }
     private var location: Location
     private var characters = [Character]()
+    private var charactersImage = [UIImage]()
     
     init(location: Location) {
         self.location = location
@@ -76,8 +77,14 @@ class LocationDetailsController: UIViewController {
     private func getCharacters() {
         self.location.residents.forEach({ NetworkManager.shared.getCharacter(url: $0) { [weak self] (character) in
             guard let self = self else {return}
-            self.characters.append(character)
-            self.locationDetailsView.collectionView.reloadData()
+                NetworkManager.shared.getImage(fromUrl: character.image) { (image) in
+                    guard let image = image else { return }
+                    DispatchQueue.main.async {
+                        self.characters.append(character)
+                        self.charactersImage.append(image)
+                        self.locationDetailsView.collectionView.reloadData()
+                    }
+                }
         }})
     }
 }
@@ -92,14 +99,7 @@ extension LocationDetailsController: UICollectionViewDataSource {
          
         cell.nameLabel.text = self.characters[indexPath.row].name
         cell.statusLabel.text = self.characters[indexPath.row].status
-
-        let url = self.characters[indexPath.row].image
-        NetworkManager.shared.getImage(fromUrl: url) { (image) in
-            guard let image = image else { return }
-            DispatchQueue.main.async {
-                cell.characterImageView.image = image
-            }
-        }
+        cell.characterImageView.image = charactersImage[indexPath.row]
         return cell
         
     }

@@ -12,7 +12,6 @@ class CollectionView: UIView {
     private enum Constants {
         static let spacing: CGFloat = 16.0
     }
-        
     
     private(set) lazy var collectionView: UICollectionView = {
         let viewLayout = UICollectionViewFlowLayout()
@@ -50,7 +49,6 @@ class CollectionView: UIView {
     private func setupViews() {
         self.addSubview(self.collectionView)
         self.addSubview(self.noResultsLabel)
-
     }
     
     private func setupLayouts() {

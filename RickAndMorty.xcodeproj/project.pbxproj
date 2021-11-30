@@ -145,6 +145,31 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		630FE2F42756A50900FA97C4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				63F7B8CE2751632600B57B42 /* EpisodesViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		630FE2F52756A50D00FA97C4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6367666027525994001ADC71 /* EpisodesFilterViewController.swift */,
+				63676662275264D5001ADC71 /* EpisodesNameFilterViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		630FE2F62756A50F00FA97C4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				6366FA832752B63000217F6B /* EpisodeDetailsController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		63366DDB2732CD0F00DE3AAD /* CharactersFilter */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,7 +394,7 @@
 		636768B1274EB4B400D95274 /* Episode */ = {
 			isa = PBXGroup;
 			children = (
-				63F7B8CE2751632600B57B42 /* EpisodesViewController.swift */,
+				630FE2F42756A50900FA97C4 /* Controller */,
 			);
 			path = Episode;
 			sourceTree = "<group>";
@@ -377,8 +402,7 @@
 		636768B2274EB4B900D95274 /* EpisodeFilter */ = {
 			isa = PBXGroup;
 			children = (
-				6367666027525994001ADC71 /* EpisodesFilterViewController.swift */,
-				63676662275264D5001ADC71 /* EpisodesNameFilterViewController.swift */,
+				630FE2F52756A50D00FA97C4 /* Controller */,
 			);
 			path = EpisodeFilter;
 			sourceTree = "<group>";
@@ -386,7 +410,7 @@
 		636768B3274EB4C200D95274 /* EpisodeDetails */ = {
 			isa = PBXGroup;
 			children = (
-				6366FA832752B63000217F6B /* EpisodeDetailsController.swift */,
+				630FE2F62756A50F00FA97C4 /* Controller */,
 			);
 			path = EpisodeDetails;
 			sourceTree = "<group>";

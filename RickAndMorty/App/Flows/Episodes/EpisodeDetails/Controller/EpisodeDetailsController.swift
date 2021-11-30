@@ -20,6 +20,8 @@ class EpisodeDetailsController: UIViewController {
     }
     private var episode: Episode
     private var characters = [Character]()
+    private var charactersImage = [UIImage]()
+
     
     init(episode: Episode) {
         self.episode = episode
@@ -77,8 +79,14 @@ class EpisodeDetailsController: UIViewController {
     private func getCharacters() {
         self.episode.characters.forEach({ NetworkManager.shared.getCharacter(url: $0) { [weak self] (character) in
             guard let self = self else {return}
-            self.characters.append(character)
-            self.episodeDetailsView.collectionView.reloadData()
+                NetworkManager.shared.getImage(fromUrl: character.image) { (image) in
+                    guard let image = image else { return }
+                    DispatchQueue.main.async {
+                        self.characters.append(character)
+                        self.charactersImage.append(image)
+                        self.episodeDetailsView.collectionView.reloadData()
+                    }
+                }
         }})
     }
 }
@@ -93,16 +101,9 @@ extension EpisodeDetailsController: UICollectionViewDataSource {
          
         cell.nameLabel.text = self.characters[indexPath.row].name
         cell.statusLabel.text = self.characters[indexPath.row].status
+        cell.characterImageView.image = charactersImage[indexPath.row]
 
-        let url = self.characters[indexPath.row].image
-        NetworkManager.shared.getImage(fromUrl: url) { (image) in
-            guard let image = image else { return }
-            DispatchQueue.main.async {
-                cell.characterImageView.image = image
-            }
-        }
         return cell
-        
     }
 }
 

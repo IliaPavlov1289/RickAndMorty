@@ -15,7 +15,7 @@ class DetailsView: UIView {
     }
 
     private(set) var locationDetailsHeaderView = DetailsHeaderView()
-    
+        
     private(set) lazy var residentslabel: UILabel = {
         let label = UILabel()
         label.textColor = UIColor.gray1

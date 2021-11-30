@@ -21,6 +21,7 @@ class CharactersViewController: UIViewController {
     }
     private var button: UIButton?
     private var characters = [Character]()
+    private var charactersImage = [UIImage]()
     
     override func loadView() {
         super.loadView()
@@ -35,8 +36,18 @@ class CharactersViewController: UIViewController {
         
         NetworkManager.shared.getCaracters(name: nil, status: nil, species: nil, gender: nil) { [weak self] (characters) in
             guard let self = self else {return}
-            self.characters = characters
-            self.charactersView.collectionView.reloadData()
+            characters.forEach({
+                NetworkManager.shared.getImage(fromUrl: $0.image) { (image) in
+                    guard let image = image else { return }
+                    DispatchQueue.main.async {
+                        self.charactersImage.append(image)
+                        self.charactersView.collectionView.reloadData()
+                    }
+                }
+            })
+            DispatchQueue.main.async {
+                self.characters = characters
+            }
         }
 
         self.button = UIButton.createFilterButton()
@@ -68,7 +79,7 @@ class CharactersViewController: UIViewController {
 
 extension CharactersViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.characters.count
+        return self.charactersImage.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -76,14 +87,9 @@ extension CharactersViewController: UICollectionViewDataSource {
          
         cell.nameLabel.text = self.characters[indexPath.row].name
         cell.statusLabel.text = self.characters[indexPath.row].status
+        cell.characterImageView.image = self.charactersImage[indexPath.row]
 
-        let url = self.characters[indexPath.row].image
-        NetworkManager.shared.getImage(fromUrl: url) { (image) in
-            guard let image = image else { return }
-            cell.characterImageView.image = image
-        }
         return cell
-        
     }
 }
 
@@ -130,12 +136,21 @@ extension CharactersViewController: CharactersFilterDelegate {
         
         NetworkManager.shared.getCaracters(name: name, status: status, species: species, gender: gender) { [weak self] (characters) in
             guard let self = self else {return}
+            characters.forEach({
+                NetworkManager.shared.getImage(fromUrl: $0.image) { (image) in
+                    guard let image = image else { return }
+                    DispatchQueue.main.async {
+                        self.charactersImage.append(image)
+                        self.charactersView.collectionView.reloadData()
+                    }
+                }
+            })
             DispatchQueue.main.async {
                 self.characters = characters
                 self.charactersView.noResultsLabel.isHidden = true
-                self.charactersView.collectionView.reloadData()
             }
         }
+        self.charactersImage = []
         self.characters = []
         self.charactersView.noResultsLabel.isHidden = false
         self.charactersView.collectionView.reloadData()

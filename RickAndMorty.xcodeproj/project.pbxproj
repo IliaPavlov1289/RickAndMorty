@@ -232,7 +232,6 @@
 				63507D0C273022D7008CB402 /* SceneDelegate.swift */,
 				63507D21273032AD008CB402 /* Entity */,
 				63507D3A2730358D008CB402 /* Flows */,
-				636768B4274EB55100D95274 /* CommonViews */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -242,9 +241,7 @@
 			children = (
 				6369CA74274152DA00983D70 /* FilterCriterias.swift */,
 				63507D34273034E2008CB402 /* Extensions */,
-				63507D3727303529008CB402 /* New Group */,
-				63457E042742A58D009D81E5 /* CustomButtons.swift */,
-				6369DDF4274FA5E800A0F7F1 /* TabBarController.swift */,
+				63507D3727303529008CB402 /* NetworkManager */,
 			);
 			path = Core;
 			sourceTree = "<group>";
@@ -287,16 +284,17 @@
 			isa = PBXGroup;
 			children = (
 				63507D352730350A008CB402 /* UIColor+Extensions.swift */,
+				63457E042742A58D009D81E5 /* CustomButtons.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		63507D3727303529008CB402 /* New Group */ = {
+		63507D3727303529008CB402 /* NetworkManager */ = {
 			isa = PBXGroup;
 			children = (
 				63507D382730354C008CB402 /* NetworkManager.swift */,
 			);
-			path = "New Group";
+			path = NetworkManager;
 			sourceTree = "<group>";
 		};
 		63507D3A2730358D008CB402 /* Flows */ = {
@@ -305,6 +303,8 @@
 				63507D3B273035B8008CB402 /* Characters */,
 				636768AC274EB40100D95274 /* Locations */,
 				636768AD274EB43800D95274 /* Episodes */,
+				636768B4274EB55100D95274 /* CommonViews */,
+				6363E9972757C719002E7D68 /* CommonControllers */,
 			);
 			path = Flows;
 			sourceTree = "<group>";
@@ -336,6 +336,14 @@
 				63231175275102BA00E626CA /* LocationDimensionFilterViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		6363E9972757C719002E7D68 /* CommonControllers */ = {
+			isa = PBXGroup;
+			children = (
+				6369DDF4274FA5E800A0F7F1 /* TabBarController.swift */,
+			);
+			path = CommonControllers;
 			sourceTree = "<group>";
 		};
 		636768AB274EB3B900D95274 /* Character */ = {
